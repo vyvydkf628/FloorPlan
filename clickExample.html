@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    .cliente {
+	margin-top:10px;
+	border: #cdcdcd medium solid;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+    </style>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"> </script> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+        ​<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="bootstrap-datetimepicker.js">
+        </script>
+        <link rel="stylesheet" type="text/css" href="datetimepickerstyle.css" />
+        
+        <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.js">
+        </script>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/datetimepickerstyle.css" />
+
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <script type="text/javascript" src = "generateData.js"></script> 
+        <div class="container">
+
+                <div class="col">
+                        <div class='col-sm-4'>
+                         
+                                <select class="js-example-basic-single" name="state" style="width: 100%">
+                                        <option value="1">1st</option>
+                                        <option value="2">2nd</option>
+                                        <option value="3">3rd</option>
+                                        <option value="4">4th</option>
+                                        <option value="5">5th</option>
+                                        <option value="6">6th</option>
+                                </select>       
+                            </div>
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+                            $('.js-example-basic-single').select2();
+                            });
+                        </script>
+                         
+                </div>
+                <div class="col">
+                    <div class='col-sm-4'>
+                        <input type='text' class="form-control" id='datetimepicker1' />
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker1').datetimepicker();
+                        });
+                    </script>
+                </div>
+                <div class="col">
+                    <div class='col-sm-4'>
+                        <input type='text' class="form-control" id='datetimepicker2' />
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker2').datetimepicker();
+                        });
+                    </script>
+                </div>
+                <div class="col">
+                        
+                    <div class='col-sm-6'>
+                        
+                        <div class = 'cliente'> 
+                        <div id="container"></div> 
+                        
+                    
+                        <script src= "canvasClickExample.js"></script>
+                        
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="col">
+                    <div class ='col-sm-6'>
+                        <div class = 'cliente'>
+                        <div class="wrapper">
+                                <div id="graph3"></div>
+                                <script src= "generateData.js"></script>
+                                <script src= "newChart.js"></script>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        
+
+</body>
+</html>
