@@ -9,12 +9,22 @@
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 }
+#rangeSlider {
+  margin: 10px;
+ }
+#rangeFrom {
+    float: left;
+    
+}
+#rangeTo {
+	float: right;
+}
     </style>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"> </script> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
         ​<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="bootstrap-datetimepicker.js">
+        <script src="js/bootstrap-datetimepicker.js">
         </script>
         <link rel="stylesheet" type="text/css" href="datetimepickerstyle.css" />
         
@@ -29,9 +39,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        
+    <script src= 'test.js'></script>
 </head>
 <body>
-        <script type="text/javascript" src = "generateData.js"></script> 
+        <script type="text/javascript" src = "js/generateData.js"></script> 
         <div class="container">
 
                 <div class="col">
@@ -55,21 +70,28 @@
                 </div>
                 <div class="col">
                     <div class='col-sm-4'>
-                        <input type='text' class="form-control" id='datetimepicker1' />
+                        <input type='text' class="form-control" id='datetimepicker1' placeholder="startDate"/>
                     </div>
                     <script type="text/javascript">
                         $(function () {
-                            $('#datetimepicker1').datetimepicker();
+                            $('#datetimepicker1').datetimepicker({
+                                format: 'YYYY-MM-DD',
+                                maxDate: $.now()
+                            });
                         });
                     </script>
                 </div>
                 <div class="col">
                     <div class='col-sm-4'>
-                        <input type='text' class="form-control" id='datetimepicker2' />
+                        <input type='text' class="form-control" id='datetimepicker2' placeholder="endDate" />
                     </div>
                     <script type="text/javascript">
                         $(function () {
-                            $('#datetimepicker2').datetimepicker();
+                            $('#datetimepicker2').datetimepicker({
+                                format: 'YYYY-MM-DD',
+                                maxDate: $.now(),
+                                
+                            });
                         });
                     </script>
                 </div>
@@ -78,12 +100,18 @@
                     <div class='col-sm-6'>
                         
                         <div class = 'cliente'> 
-                        <div id="container"></div> 
+                        <div id="container"><div id="rangeSlider"></div>
+                        <!--- SHOW DATE HERE -->
+                        <p>
+                          <label for="amount">Selected Date:</label>
+                          <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;" placeholder="Not Selected">
+                        </p></div> 
                         
                     
-                        <script src= "canvasClickExample.js"></script>
+                        <script src= "js/canvasClickExample.js"></script>
                         
                         </div>
+                        
                     </div>
                    
                 </div>
@@ -92,8 +120,8 @@
                         <div class = 'cliente'>
                         <div class="wrapper">
                                 <div id="graph3"></div>
-                                <script src= "generateData.js"></script>
-                                <script src= "newChart.js"></script>
+                                <script src= "js/generateData.js"></script>
+                                <script src= "js/newChart.js"></script>
                                     
                             </div>
                         </div>
@@ -101,6 +129,9 @@
                 </div>
 
             </div>
+            
+
+            
         
 
 </body>

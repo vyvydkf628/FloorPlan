@@ -1,8 +1,8 @@
 
-document.write("<script type='text/javascript' src='js/newChart.js'><"+"/script>");
+document.write("<script type='text/javascript' src='newChart.js'><"+"/script>");
 
 window.onload = function (){
-    var paper = Raphael("container", 534, 455); 
+    var paper = Raphael("container", 534, 420); 
     // $.getJSON("newconvertcsv.json", function (data) {
     //     $.each(data, function(key, value) {
     //         var scaleF =7;
@@ -31,9 +31,7 @@ window.onload = function (){
             y1 = value.y2 * scaleF + scaleC *-1;
             y = 400-y;
             y1 = 400-y1;
-            
             bckColor=colorPaint(Math.random()*30);
-            
             
             paint_centered_wrap(paper, x, y1, x1-x, y-y1, value.name.toString(), bckColor, );
             }
