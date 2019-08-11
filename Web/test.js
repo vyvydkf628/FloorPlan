@@ -1,11 +1,15 @@
 
 document.write("<script type='text/javascript' src='js/canvasClickExample.js'><"+"/script>");
       
-        $(document).ready(function() {
+        drawSlider = function() {
           //months start at 0, so 11 is Dec, not 12
-            var startDate = new Date(2013, 11, 3);
-            var endDate = new Date(2016,11,12);
-          
+            var startDate = $("#datetimepicker1").data("DateTimePicker").date().toDate();
+            var endDate = $("#datetimepicker2").data("DateTimePicker").date().toDate();
+            
+            $( "#amount" ).val(startDate);
+            // var value=$("#datetimepicker1").data("DateTimePicker").date().toDate().toString();
+            // var value = new Date(value);
+            // alert(value)
             var timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
             var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
                 
@@ -59,12 +63,11 @@ document.write("<script type='text/javascript' src='js/canvasClickExample.js'><"
                   });
               //set our starting point to add days to it.
               //max is taken care of above in max: diffdays
-              var result = new Date(2013, 11, 3);
+              var result = $("#datetimepicker1").data("DateTimePicker").date().toDate();
               result.setDate(result.getDate() + ui.value);
               //set the amount field
               $( "#amount" ).val(result);
                 }
             });  
-        });
+        }
         
-            

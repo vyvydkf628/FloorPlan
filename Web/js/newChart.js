@@ -50,6 +50,7 @@ var data = [
     {
       x: X,
       y: Y,
+      name: "Second",
       type: 'scatter',
       line: {
         shape: 'spline',
@@ -59,4 +60,4 @@ var data = [
     },
     
   ];
-  
+

@@ -49,8 +49,8 @@
         <script type="text/javascript" src = "js/generateData.js"></script> 
         <div class="container">
 
-                <div class="col">
-                        <div class='col-sm-4'>
+                
+                        <div class='col-sm-3'>
                          
                                 <select class="js-example-basic-single" name="state" style="width: 100%">
                                         <option value="1">1st</option>
@@ -67,9 +67,9 @@
                             });
                         </script>
                          
-                </div>
-                <div class="col">
-                    <div class='col-sm-4'>
+                
+                
+                    <div class='col-sm-3'>
                         <input type='text' class="form-control" id='datetimepicker1' placeholder="startDate"/>
                     </div>
                     <script type="text/javascript">
@@ -80,9 +80,8 @@
                             });
                         });
                     </script>
-                </div>
-                <div class="col">
-                    <div class='col-sm-4'>
+                
+                    <div class='col-sm-3'>
                         <input type='text' class="form-control" id='datetimepicker2' placeholder="endDate" />
                     </div>
                     <script type="text/javascript">
@@ -94,8 +93,26 @@
                             });
                         });
                     </script>
-                </div>
-                <div class="col">
+                
+                
+                    <div class='col-sm-3'>
+                           
+                        <button id="btnSubmit"type="button" class="btn btn-outline-secondary btn-block">Submit</button>
+                        <script type="text/javascript">
+                        $(document).ready(function() {
+                            $("#btnSubmit").click(function(){
+                                data.splice(1,data.length);
+                                Plotly.newPlot('graph3', data, layout, {showSendToCloud: true});
+                
+                                drawFloorPlan();
+                                drawOccupancyLegend();
+                                drawSlider();
+                            }); 
+                        });
+                        </script>
+
+                    </div>
+                
                         
                     <div class='col-sm-6'>
                         
@@ -114,8 +131,8 @@
                         
                     </div>
                    
-                </div>
-                <div class="col">
+                
+                
                     <div class ='col-sm-6'>
                         <div class = 'cliente'>
                         <div class="wrapper">
@@ -126,8 +143,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
+                
             </div>
             
 
