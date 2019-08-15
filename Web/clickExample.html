@@ -1,154 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <style>
-    .cliente {
-	margin-top:10px;
-	border: #cdcdcd medium solid;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-}
-#rangeSlider {
-  margin: 10px;
- }
-#rangeFrom {
-    float: left;
-    
-}
-#rangeTo {
-	float: right;
-}
-    </style>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"> </script> 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
-        ​<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="js/bootstrap-datetimepicker.js">
-        </script>
-        <link rel="stylesheet" type="text/css" href="datetimepickerstyle.css" />
-        
-        <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.js">
-        </script>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/datetimepickerstyle.css" />
 
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<head>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.js">
+    </script>
+    <link rel="stylesheet" type="text/css" href="datetimepickerstyle.css" />
+
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datetimepicker.js">
+    </script>
+    <link rel="stylesheet" type="text/css"
+        href="${pageContext.request.contextPath}/resources/css/datetimepickerstyle.css" />
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    
+
     <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
     <script type="text/javascript" src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-        
-    <script src= 'test.js'></script>
+
+    ​
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+    <script src='test.js'></script>
 </head>
+
 <body>
-        <script type="text/javascript" src = "js/generateData.js"></script> 
-        <div class="container">
+    <script type="text/javascript" src="js/generateData.js"></script>
 
-                
-                        <div class='col-sm-3'>
-                         
-                                <select class="js-example-basic-single" name="state" style="width: 100%">
-                                        <option value="1">1st</option>
-                                        <option value="2">2nd</option>
-                                        <option value="3">3rd</option>
-                                        <option value="4">4th</option>
-                                        <option value="5">5th</option>
-                                        <option value="6">6th</option>
-                                </select>       
-                            </div>
-                        <script type="text/javascript">
-                            $(document).ready(function() {
-                            $('.js-example-basic-single').select2();
-                            });
-                        </script>
-                         
-                
-                
-                    <div class='col-sm-3'>
-                        <input type='text' class="form-control" id='datetimepicker1' placeholder="startDate"/>
-                    </div>
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#datetimepicker1').datetimepicker({
-                                format: 'YYYY-MM-DD',
-                                maxDate: $.now()
-                            });
-                        });
-                    </script>
-                
-                    <div class='col-sm-3'>
-                        <input type='text' class="form-control" id='datetimepicker2' placeholder="endDate" />
-                    </div>
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#datetimepicker2').datetimepicker({
-                                format: 'YYYY-MM-DD',
-                                maxDate: $.now(),
-                                
-                            });
-                        });
-                    </script>
-                
-                
-                    <div class='col-sm-3'>
-                           
-                        <button id="btnSubmit"type="button" class="btn btn-outline-secondary btn-block">Submit</button>
-                        <script type="text/javascript">
-                        $(document).ready(function() {
-                            $("#btnSubmit").click(function(){
-                                data.splice(1,data.length);
-                                Plotly.newPlot('graph3', data, layout, {showSendToCloud: true});
-                
-                                drawFloorPlan();
-                                drawOccupancyLegend();
-                                drawSlider();
-                            }); 
-                        });
-                        </script>
+    <div class="container">
 
-                    </div>
-                
-                        
-                    <div class='col-sm-6'>
-                        
-                        <div class = 'cliente'> 
-                        <div id="container"><div id="rangeSlider"></div>
+        <div class="col-sm-2">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons" width="100%"> 
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-2">
+                <select class="js-example-basic-single" name="state" style="width: 100%" id="select1">
+                        <option value="1">hour</option>
+                        <option value="2">day</option>
+                    </select>
+        </div>
+        
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#select1').select2();
+            });
+        </script>
+        <div class='col-sm-2'>
+
+            <select class="js-example-basic-single" name="state" style="width: 100%" id="select2">
+                <option value="1">1st</option>
+                <option value="2">2nd</option>
+                <option value="3">3rd</option>
+                <option value="4">4th</option>
+                <option value="5">5th</option>
+                <option value="6">6th</option>
+            </select>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#select2').select2();
+            });
+        </script>
+
+
+
+        <div class='col-sm-2'>
+            <input type='text' class="form-control" id='datetimepicker1' placeholder="startDate" />
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                    maxDate: $.now()
+                });
+            });
+        </script>
+
+        <div class='col-sm-2'>
+            <input type='text' class="form-control" id='datetimepicker2' placeholder="endDate" />
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                    maxDate: $.now(),
+
+                });
+            });
+        </script>
+
+
+        <div class='col-sm-2'>
+
+            <button id="btnSubmit" type="button" class="btn btn-outline-secondary btn-block">Submit</button>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#btnSubmit").click(function () {
+                        data.splice(1, data.length);
+                        Plotly.newPlot('graph3', data, layout, { showSendToCloud: true });
+                        paper.clear();
+                        drawFloorPlan();
+                        // drawOccupancyLegend();
+                        drawTypeLegend();
+                        drawSlider();
+                    });
+                });
+            </script>
+
+        </div>
+
+        <div class='raw'>
+            <div class='col-sm-6'>
+
+                <div class='cliente'>
+                    <div id="container">
+                        <div id="rangeSlider"></div>
                         <!--- SHOW DATE HERE -->
                         <p>
-                          <label for="amount">Selected Date:</label>
-                          <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;" placeholder="Not Selected">
-                        </p></div> 
-                        
-                    
-                        <script src= "js/canvasClickExample.js"></script>
-                        
-                        </div>
-                        
+                            <label for="amount">Selected Date:</label>
+                            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"
+                                placeholder="Not Selected">
+                        </p>
                     </div>
-                   
-                
-                
-                    <div class ='col-sm-6'>
-                        <div class = 'cliente'>
-                        <div class="wrapper">
-                                <div id="graph3"></div>
-                                <script src= "js/generateData.js"></script>
-                                <script src= "js/newChart.js"></script>
-                                    
-                            </div>
-                        </div>
-                    </div>
-                
-            </div>
-            
 
-            
-        
+
+                    <script src="js/canvasClickExample.js"></script>
+
+                </div>
+
+            </div>
+
+            <div class='col-sm-6'>
+                <div class='cliente'>
+                    <div class="wrapper">
+                        <div id="graph3"></div>
+                        <script src="js/generateData.js"></script>
+                        <script src="js/newChart.js"></script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
 
 </body>
+
 </html>

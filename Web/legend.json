@@ -1,0 +1,115 @@
+[
+ {
+   "name": "faculty_office",
+   "type": "faculty_office",
+   "x1": 65,
+   "y1": 75,
+   "x2": 75,
+   "y2": 80
+ },
+ {
+   "name": "building",
+   "type": "building",
+   "x1": 65,
+   "y1": 70,
+   "x2": 75,
+   "y2": 75
+ },
+ {
+   "name": "conference_room",
+   "type": "conference_room",
+   "x1": 65,
+   "y1": 65,
+   "x2": 75,
+   "y2": 70
+ },
+ {
+   "name": "kitchen",
+   "type": "kitchen",
+   "x1": 65,
+   "y1": 60,
+   "x2": 75,
+   "y2": 65
+ },
+ {
+   "name": "lab",
+   "type": "lab",
+   "x1": 65,
+   "y1": 55,
+   "x2": 75,
+   "y2": 60
+ },
+ {
+   "name": "classroom",
+   "type": "classroom",
+   "x1": 65,
+   "y1": 50,
+   "x2": 75,
+   "y2": 55
+ },
+ {
+   "name": "lounge",
+   "type": "lounge",
+   "x1": 65,
+   "y1": 45,
+   "x2": 75,
+   "y2": 50
+ },
+ {
+   "name": "corridor",
+   "type": "corridor",
+   "x1": 75,
+   "y1": 75,
+   "x2": 85,
+   "y2": 80
+ },
+ {
+   "name": "mail_room",
+   "type": "mail_room",
+   "x1": 75,
+   "y1": 70,
+   "x2": 85,
+   "y2": 75
+ },
+ {
+   "name": "elevator room",
+   "type": "elevator room",
+   "x1": 75,
+   "y1": 65,
+   "x2": 85,
+   "y2": 70
+ },
+ {
+   "name": "seminar_room",
+   "type": "seminar_room",
+   "x1": 75,
+   "y1": 60,
+   "x2": 85,
+   "y2": 65
+ },
+ {
+   "name": "reception",
+   "type": "reception",
+   "x1": 75,
+   "y1": 55,
+   "x2": 85,
+   "y2": 60
+ },
+ {
+   "type": "office",
+   "name": "office",
+   "x1": 75,
+   "y1": 50,
+   "x2": 85,
+   "y2": 55
+ }
+ ,
+ {
+   "type": "utility",
+   "name": "utility",
+   "x1": 75,
+   "y1": 45,
+   "x2": 85,
+   "y2": 50
+ }
+]

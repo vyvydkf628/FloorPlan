@@ -11,7 +11,8 @@ document.write("<script type='text/javascript' src='js/canvasClickExample.js'><"
             // var value = new Date(value);
             // alert(value)
             var timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
-            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600));
+            console.log(diffDays);
                 
             $("#rangeSlider").slider({
             //set our ranges here, min to max days, calculated above
@@ -23,48 +24,17 @@ document.write("<script type='text/javascript' src='js/canvasClickExample.js'><"
             
                 slide: function (event, ui) {
                   
+                  data.splice(1,data.length);
+                  Plotly.newPlot('graph3', data, layout, {showSendToCloud: true});
                   paper.clear();
-                  $.getJSON("convertcsv_2nd.json", function (data) {
-                  $.each(data, function(key, value) {
-                      try{
-                      var scaleF =5;
-                      var scaleC =10;
-                      x = value.x1  * scaleF + scaleC;
-                      x1 = value.x2 * scaleF + scaleC;
-                      y = value.y1  * scaleF + scaleC *-1;
-                      y1 = value.y2 * scaleF + scaleC *-1;
-                      y = 400-y;
-                      y1 = 400-y1;
-                      bckColor=colorPaint(Math.random()*30);
-                      
-                      paint_centered_wrap(paper, x, y1, x1-x, y-y1, value.name.toString(), bckColor, );
-                      }
-                      catch(e){
-
-                      }
-                      
-                    });
-                  });
-                  $.getJSON("color.json", function (data) {
-                    $.each(data, function(key, value) {
-                        var scaleF =7;
-                        x = value.x1 *scaleF;
-                        x1 = value.x2 *scaleF;
-                        y = value.y1 *scaleF;
-                        y1 = value.y2 *scaleF;
-                        y = 570-y;
-                        y1 = 570-y1;
-                        var colorRoom= colorPaint(value.type);
-            
-                        paint_centered_wrap(paper, x, y1, x1-x, y-y1, value.name.toString(), colorRoom, );
-                        
-                        
-                    });
-                  });
+                  drawFloorPlan();
+                  drawOccupancyLegend();
               //set our starting point to add days to it.
               //max is taken care of above in max: diffdays
               var result = $("#datetimepicker1").data("DateTimePicker").date().toDate();
-              result.setDate(result.getDate() + ui.value);
+              console.log(result);
+              result.setHours(result.getHours() + ui.value);
+              console.log(result.getDate());
               //set the amount field
               $( "#amount" ).val(result);
                 }

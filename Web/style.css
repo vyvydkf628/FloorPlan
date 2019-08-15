@@ -1,0 +1,19 @@
+       
+    .cliente {
+        margin-top:10px;
+        border: #cdcdcd medium solid;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+    }
+    #rangeSlider {
+      margin: 10px;
+     }
+    #rangeFrom {
+        float: left;
+        
+    }
+    #rangeTo {
+        float: right;
+    }
+    

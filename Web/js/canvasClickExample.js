@@ -20,29 +20,42 @@ var paper = Raphael("container", 534, 420);
             
     //     });
     // });
-function drawFloorPlan(){
-    $.getJSON("convertcsv_2nd.json", function (data) {
-        $.each(data, function(key, value) {
-            try{
-            var scaleF =5;
-            var scaleC =10;
-            x = value.x1  * scaleF + scaleC;
-            x1 = value.x2 * scaleF + scaleC;
-            y = value.y1  * scaleF + scaleC *-1;
-            y1 = value.y2 * scaleF + scaleC *-1;
-            y = 400-y;
-            y1 = 400-y1;
-            bckColor=colorPaint(Math.random()*30);
+    function drawFloorPlan(){
+        // drawTypeLegend();
+        var selectedFloor = $('#select2').select2().val().toString();
+        $.getJSON("newFormat.json", function (data) {
+            $.each(data, function(key, value) {
             
-            paint_centered_wrap(paper, x, y1, x1-x, y-y1, value.name.toString(), bckColor, );
-            }
-            catch(e){
+               for(i=0; i<value.length; i++){
 
-            }
-            
+                try{
+                    if (selectedFloor== value[i].extent.start.floor){
+                        
+                        var scaleF =5;
+                        var scaleC =10;
+                        x = value[i].extent.start.x * scaleF + scaleC;
+                        x1 = value[i].extent.end.x * scaleF + scaleC;
+                        y = value[i].extent.start.y  * scaleF + scaleC *-1;
+                        y1 = value[i].extent.end.y * scaleF + scaleC *-1;
+                        y = 400-y;
+                        y1 = 400-y1;
+                        occ=Math.round(Math.random()*30);
+                        bckColor=colorPaint(occ);
+                        
+                        paint_centered_wrap(paper, x, y1, x1-x, y-y1, value[i].name.toString(), bckColor, value[i].type.toString(), occ );
+                        
+
+                    }
+                }
+                finally{
+                        continue;
+                    } 
+               }
+                
+            });
         });
-    });
-}
+
+    }
 function drawOccupancyLegend(){
     $.getJSON("color.json", function (data) {
         $.each(data, function(key, value) {
@@ -55,14 +68,32 @@ function drawOccupancyLegend(){
             y1 = 570-y1;
             var colorRoom= colorPaint(value.type);
 
-            paint_centered_wrap(paper, x, y1, x1-x, y-y1, value.name.toString(), colorRoom, );
+            paint_centered_wrap(paper, x, y1, x1-x, y-y1, value.name.toString(), colorRoom, value.type.toString(), value.type, );
             
             
         });
     });
 }
-    
-    paint_centered_wrap = function(paper, x, y, w, h, text, bckColor, z) {
+
+function drawTypeLegend(){
+    $.getJSON("legend.json", function (data) {
+        $.each(data, function(key, value) {
+            var scaleF =5;
+            x  = value.x1 *scaleF +100 ;
+            x1 = value.x2 *scaleF +100;
+            y  = value.y1 *scaleF ;
+            y1 = value.y2 *scaleF ;
+            y  = 570-y -150;
+            y1 = 570-y1-150;
+            var colorRoom= findColor(value.type);
+
+            paint_centered_wrap(paper, x, y1, x1-x, y-y1, value.name.toString(), colorRoom, value.type.toString(), value.type, );
+            
+            
+        });
+    });
+}
+paint_centered_wrap = function(paper, x, y, w, h, text, bckColor, type, occ, z) {
         var detail,
             detailText
         var dot = paper.rect(x,y,w,h).attr({ 
@@ -111,13 +142,16 @@ function drawOccupancyLegend(){
             paper.text(x+w/2,y+h/2,text); 
 
             dot.mouseover(function(){
-                
+                // image = paper.image("src/image3.png",x+w/2,y+h/2-150,150,150).attr({
+                //     stroke:"#DAD9D8"
+                // })
                 detail= paper.rect(x+w/2,y+h/2,100,100).attr({
                     fill:"#ffffff",
                     stroke:"#DAD9D8"
                 });
                 
-                detailText = paper.text(x+w/2+50,y+h/2+50,"Occupancy or Title");
+                detailText = paper.text(x+w/2+50,y+h/2+50, type+ "\n" + occ);
+                // detailText = paper.text(x+w/2+75-10,y+h/2-10+75-150, type+ "\n" + occ);
             });
             dot.mouseout(function(){
                 detail.remove();
@@ -125,6 +159,44 @@ function drawOccupancyLegend(){
             });
     }    
 
+
+
+
+
+    function findColor(type){
+        if(type!=null)
+            type=type.toLowerCase();
+        switch(type) {
+            case "faculty_office":
+                return '#ff8000';
+            case "building":
+                return '#ffbf00';
+            case "conference_room":
+                return '#ffff00';
+            case "kitchen":
+                return '#bfff00';
+            case "lab":
+                return '#00ff40';
+            case "classroom":
+                return '#00ffff';
+            case "lounge":
+                return '#0040ff';
+            case "corridor":
+                return '#8000ff';
+            case "mail_room":
+                return '#ff00ff';
+            case "seminar_room":
+                return '#ff0080';
+            case "reception":
+                return '#ff0000';
+            case "office":
+                return '#8e481f';
+            case "utility":
+                return '#808080';
+            default:
+                return '#FFFFFF'
+        }
+    }
 
 function colorPaint(occ){
         
